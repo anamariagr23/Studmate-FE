@@ -6,9 +6,9 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LoginComponent} from './login/login.component';
 import {RouterModule} from "@angular/router";
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { UsersPageComponent } from './users-page/users-page.component';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {UsersPageComponent} from './users-page/users-page.component';
 
 
 @NgModule({
@@ -25,6 +25,7 @@ import { UsersPageComponent } from './users-page/users-page.component';
     // TO DO - future improvement use routing module for that
     RouterModule.forRoot([
       {path: 'login', component: LoginComponent},
+      {path: 'users', component: UsersPageComponent}
 
     ]),
     FormsModule,
