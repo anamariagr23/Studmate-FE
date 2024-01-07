@@ -6,9 +6,11 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LoginComponent} from './login/login.component';
 import {RouterModule} from "@angular/router";
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {UsersPageComponent} from './users-page/users-page.component';
+import { SurveyPageComponent } from './survey-page/survey-page.component';
+import { SurveyFormComponent } from './survey-form/survey-form.component';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import {UsersPageComponent} from './users-page/users-page.component';
     AppComponent,
     LoginComponent,
     UsersPageComponent,
+    SurveyPageComponent,
+    SurveyFormComponent,
 
   ],
   imports: [
@@ -25,9 +29,10 @@ import {UsersPageComponent} from './users-page/users-page.component';
     // TO DO - future improvement use routing module for that
     RouterModule.forRoot([
       {path: 'login', component: LoginComponent},
-      {path: 'users', component: UsersPageComponent}
-
+      {path: 'users', component: UsersPageComponent},
+      {path: 'survey', component: SurveyPageComponent},
     ]),
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule
   ],

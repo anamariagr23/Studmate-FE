@@ -21,6 +21,7 @@ export class LoginComponent {
     this.http.post<AuthResponse>('http://127.0.0.1:5000/login', credentials)
       .subscribe(response => {
         const token = response.data.token;
+        console.log(response);
         localStorage.setItem('token', token);
         this.router.navigate(['/users']);
       }, error => {
