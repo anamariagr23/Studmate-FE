@@ -9,11 +9,7 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class StudentDetailsFormComponent implements OnInit {
   studentForm!: FormGroup;
-  dorms = [
-    { id: 1, name: 'Dormitory A' },
-    { id: 2, name: 'Dormitory B' },
-    { id: 3, name: 'Dormitory C' }
-  ];
+  dorms: any[] = []; // Populate from the dorms table
   majors: any[] = []; // Populate from the majors table
   sexes: any[] = []; // Populate from the sex table
 
