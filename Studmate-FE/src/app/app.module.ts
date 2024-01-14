@@ -12,6 +12,7 @@ import { UsersPageComponent } from './users-page/users-page.component';
 import { SurveyPageComponent } from './survey-page/survey-page.component';
 import { SurveyFormComponent } from './survey-form/survey-form.component';
 import { AvatarComponent } from './avatar-page/avatar/avatar.component';
+import { StudentDetailsFormComponent } from './student-details-form/student-details-form/student-details-form.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { AvatarComponent } from './avatar-page/avatar/avatar.component';
     SurveyPageComponent,
     SurveyFormComponent,
     AvatarComponent,
+    StudentDetailsFormComponent,
 
   ],
   imports: [
