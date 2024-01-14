@@ -14,10 +14,26 @@ export class StudentDetailsFormComponent implements OnInit {
   sexes: any[] = []; // Populate from the sex table
 
   constructor(private fb: FormBuilder, private studentService: StudentService) {
-
+    this.createForm();
   }
 
   ngOnInit(): void {
+    // this.studentForm = this.fb.group({
+    //   lastname: ['', Validators.required],
+    //   firstname: ['', Validators.required],
+    //   dorm: [''],
+    //   major: [''],
+    //   sex: [''],
+    //   description: [''],
+    //   avatar_image: ['']
+    // });
+
+    // this.getDorms();
+    // this.getMajors();
+    // this.getSexes();
+  }
+
+  private createForm() {
     this.studentForm = this.fb.group({
       lastname: ['', Validators.required],
       firstname: ['', Validators.required],
@@ -27,10 +43,6 @@ export class StudentDetailsFormComponent implements OnInit {
       description: [''],
       avatar_image: ['']
     });
-
-    this.getDorms();
-    this.getMajors();
-    this.getSexes();
   }
 
   getDorms(): void {

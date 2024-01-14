@@ -13,7 +13,8 @@ import { SurveyPageComponent } from './survey-page/survey-page.component';
 import { SurveyFormComponent } from './survey-form/survey-form.component';
 import { AvatarComponent } from './avatar-page/avatar/avatar.component';
 import { StudentDetailsFormComponent } from './student-details-form/student-details-form/student-details-form.component';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,9 @@ import { StudentDetailsFormComponent } from './student-details-form/student-deta
     ]),
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    MatSelectModule,
+    HttpClientModule,
+    MatInputModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
