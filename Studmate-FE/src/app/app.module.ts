@@ -32,9 +32,11 @@ import { StudentDetailsFormComponent } from './student-details-form/student-deta
     BrowserAnimationsModule,
     // TO DO - future improvement use routing module for that
     RouterModule.forRoot([
+      { path: '', component: LoginComponent },
       { path: 'login', component: LoginComponent },
       { path: 'users', component: UsersPageComponent },
       { path: 'survey', component: SurveyPageComponent },
+      { path: 'student-details', component: StudentDetailsFormComponent },
     ]),
     ReactiveFormsModule,
     FormsModule,

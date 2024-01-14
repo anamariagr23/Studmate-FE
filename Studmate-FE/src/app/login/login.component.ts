@@ -25,7 +25,12 @@ export class LoginComponent {
         console.log(response);
         localStorage.setItem('token', token);
         localStorage.setItem('details_completed', details_completed.toString());
-        this.router.navigate(['/users']);
+        if (details_completed === false && response.data.id_role === 3) {
+          this.router.navigate(['/student-details']);
+        } else {
+          this.router.navigate(['/users']);
+        }
+
       }, error => {
         console.error('Login failed:', error);
       });
