@@ -9,28 +9,17 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class StudentDetailsFormComponent implements OnInit {
   studentForm!: FormGroup;
-  dorms: any[] = []; // Populate from the dorms table
-  majors: any[] = []; // Populate from the majors table
-  sexes: any[] = []; // Populate from the sex table
+  dorms: any[] = [];
+  majors: any[] = [];
+  sexes: any[] = [];
+  selectedFile: File | null = null;
 
   constructor(private fb: FormBuilder, private studentService: StudentService) {
     this.createForm();
   }
 
   ngOnInit(): void {
-    // this.studentForm = this.fb.group({
-    //   lastname: ['', Validators.required],
-    //   firstname: ['', Validators.required],
-    //   dorm: [''],
-    //   major: [''],
-    //   sex: [''],
-    //   description: [''],
-    //   avatar_image: ['']
-    // });
 
-    // this.getDorms();
-    // this.getMajors();
-    // this.getSexes();
   }
 
   private createForm() {
@@ -43,36 +32,46 @@ export class StudentDetailsFormComponent implements OnInit {
       description: [''],
       avatar_image: ['']
     });
+    this.getDorms();
+    this.getMajors();
+    this.getSexes();
   }
 
   getDorms(): void {
     this.dorms = [
-      { id: 1, name: 'Dormitory A' },
-      { id: 2, name: 'Dormitory B' },
-      { id: 3, name: 'Dormitory C' }
+      { id: 1, name: 'C13' },
+      { id: 2, name: 'C17' },
+      { id: 3, name: 'C12' },
+      { id: 4, name: 'Camelia' }
     ];
   }
 
   getMajors(): void {
 
     this.majors = [
-      { id: 1, name: 'Computer Science' },
-      { id: 2, name: 'Mechanical Engineering' },
-      { id: 3, name: 'Physics' }
+      { id: 1, name: 'Informatica' },
+      { id: 2, name: 'Informatica Aplicata' },
+      { id: 3, name: 'Matematica' }
     ];
   }
 
   getSexes(): void {
     this.sexes = [
-      { id: 1, type: 'Male' },
-      { id: 2, type: 'Female' },
-      { id: 3, type: 'Other' }
+      { id: 1, type: 'Masculin' },
+      { id: 2, type: 'Feminin' },
     ];
   }
 
   onSubmit(): void {
-    if (this.studentForm.valid) {
-      this.studentService.createStudent(this.studentForm.value).subscribe(
+    if (this.studentForm.valid && this.selectedFile) {
+      const formData = new FormData();
+      formData.append('file', this.selectedFile, this.selectedFile.name);
+      formData.append('lastname', this.studentForm.value.lastname);
+      formData.append('firstname', this.studentForm.value.firstname);
+      formData.append('dorm', this.studentForm.value.dorm);
+      formData.append('major', this.studentForm.value.major);
+      formData.append('sex', this.studentForm.value.sex);
+      this.studentService.createStudent(formData).subscribe(
         response => {
           console.log('Student created successfully', response);
         },
@@ -80,6 +79,14 @@ export class StudentDetailsFormComponent implements OnInit {
           console.error('Error creating student', error);
         }
       );
+    }
+  }
+
+  onFileSelected(event: Event): void {
+    const element = event.currentTarget as HTMLInputElement;
+    let fileList: FileList | null = element.files;
+    if (fileList) {
+      this.selectedFile = fileList[0];
     }
   }
 }

@@ -1,0 +1,23 @@
+.navbar-left img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.navbar-right button {
+    margin-left: 10px;
+}
+
+.navbar {
+    background: linear-gradient(to right, #800080, #89CFF0, #FFFFFF);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-weight: 550;
+}
+
+.navbar-left,
+.navbar-right {
+    display: flex;
+    align-items: center;
+}

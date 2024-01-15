@@ -15,6 +15,10 @@ import { AvatarComponent } from './avatar-page/avatar/avatar.component';
 import { StudentDetailsFormComponent } from './student-details-form/student-details-form/student-details-form.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { NavbarComponent } from './navbar/navbar/navbar.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -25,13 +29,13 @@ import { MatInputModule } from '@angular/material/input';
     SurveyFormComponent,
     AvatarComponent,
     StudentDetailsFormComponent,
+    NavbarComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    // TO DO - future improvement use routing module for that
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
       { path: 'login', component: LoginComponent },
@@ -44,6 +48,9 @@ import { MatInputModule } from '@angular/material/input';
     MatSelectModule,
     HttpClientModule,
     MatInputModule,
+    MatTabsModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
