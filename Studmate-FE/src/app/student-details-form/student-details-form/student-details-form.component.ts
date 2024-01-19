@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class StudentDetailsFormComponent implements OnInit {
   sexes: any[] = [];
   selectedFile: File | null = null;
 
-  constructor(private fb: FormBuilder, private studentService: StudentService) {
+  constructor(private fb: FormBuilder, private studentService: StudentService, private router: Router) {
     this.createForm();
   }
 
@@ -71,9 +72,13 @@ export class StudentDetailsFormComponent implements OnInit {
       formData.append('dorm', this.studentForm.value.dorm);
       formData.append('major', this.studentForm.value.major);
       formData.append('sex', this.studentForm.value.sex);
+      formData.append('description', this.studentForm.value.description);
       this.studentService.createStudent(formData).subscribe(
         response => {
           console.log('Student created successfully', response);
+          alert("Student created succesfully");
+          // this.router.navigate(['/student-details']);
+
         },
         error => {
           console.error('Error creating student', error);
