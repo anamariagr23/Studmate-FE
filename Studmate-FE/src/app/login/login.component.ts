@@ -21,11 +21,19 @@ export class LoginComponent {
     this.http.post<AuthResponse>('http://127.0.0.1:5000/login', credentials)
       .subscribe(response => {
         const token = response.data.token;
-        const details_completed = response.data.details_completed;
+        const details_completed = response.data?.details_completed;
         console.log(response);
         localStorage.setItem('token', token);
-        localStorage.setItem('details_completed', details_completed.toString());
-        this.router.navigate(['/users']);
+        if (details_completed) {
+          localStorage.setItem('details_completed', details_completed.toString());
+        }
+
+        if (!details_completed && response.data.id_role === 3) {
+          this.router.navigate(['/student-details']);
+        } else {
+          this.router.navigate(['/users']);
+        }
+
       }, error => {
         console.error('Login failed:', error);
       });

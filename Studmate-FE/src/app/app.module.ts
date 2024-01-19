@@ -7,13 +7,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UsersPageComponent } from './users-page/users-page.component';
 import { SurveyPageComponent } from './survey-page/survey-page.component';
 import { SurveyFormComponent } from './survey-form/survey-form.component';
 import { AvatarComponent } from './avatar-page/avatar/avatar.component';
 import { StudentDetailsFormComponent } from './student-details-form/student-details-form/student-details-form.component';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { NavbarComponent } from './navbar/navbar/navbar.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,24 +30,31 @@ import { StudentDetailsFormComponent } from './student-details-form/student-deta
     SurveyFormComponent,
     AvatarComponent,
     StudentDetailsFormComponent,
+    NavbarComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    // TO DO - future improvement use routing module for that
     RouterModule.forRoot([
+      { path: '', component: LoginComponent },
       { path: 'login', component: LoginComponent },
       { path: 'users', component: UsersPageComponent },
       { path: 'survey', component: SurveyPageComponent },
+      { path: 'student-details', component: StudentDetailsFormComponent },
     ]),
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    MatSelectModule,
+    HttpClientModule,
+    MatInputModule,
+    MatTabsModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

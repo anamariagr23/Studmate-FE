@@ -1,1 +1,50 @@
-<p>student-details-form works!</p>
+<app-navbar></app-navbar>
+<div class="form-container">
+    <div class="form-header">
+        Student Registration
+    </div>
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="student-form">
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastname" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstname" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>Dorm</mat-label>
+            <mat-select formControlName="dorm">
+                <mat-option *ngFor="let dorm of dorms" [value]="dorm.id">{{ dorm.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>Major</mat-label>
+            <mat-select formControlName="major">
+                <mat-option *ngFor="let major of majors" [value]="major.id">{{ major.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>Sex</mat-label>
+            <mat-select formControlName="sex">
+                <mat-option *ngFor="let sex of sexes" [value]="sex.id">{{ sex.type }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="custom-mat-form-field">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+
+        <div appearance="fill" class="custom-mat-form-field">
+            <mat-label>Avatar Image</mat-label>
+            <input type="file" (change)="onFileSelected($event)" accept="image/*">
+        </div>
+
+        <button mat-raised-button color="primary" type="submit" class="submit-button">Submit</button>
+    </form>
+</div>
