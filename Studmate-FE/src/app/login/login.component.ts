@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { HttpClient } from "@angular/common/http";
+import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthResponse } from "../../shared/models/auth-response.interface";
 
@@ -8,11 +9,21 @@ import { AuthResponse } from "../../shared/models/auth-response.interface";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
+  user?: SocialUser;
+  loggedIn?: boolean;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private authService: SocialAuthService) {
+  }
+
+  ngOnInit(): void {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      console.log(user);
+    });
   }
 
   login(): void {
