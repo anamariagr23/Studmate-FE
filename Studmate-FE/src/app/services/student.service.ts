@@ -11,11 +11,11 @@ export class StudentService {
   constructor(private http: HttpClient) { }
 
   createStudent(student: any) {
-    return this.http.post(`http://127.0.0.1:5000/students`, student);
+    return this.http.post(`https://127.0.0.1:5000/students`, student);
   }
 
   getStudents(): Observable<StudentsResponse> {
-    return this.http.get<StudentsResponse>(`http://127.0.0.1:5000/students`);
+    return this.http.get<StudentsResponse>(`https://127.0.0.1:5000/students`);
   }
 }
 

@@ -25,6 +25,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider
 } from '@abacritt/angularx-social-login';
+import { LoginRedirectComponentComponent } from './login-redirect-component/login-redirect-component.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {
     AvatarComponent,
     StudentDetailsFormComponent,
     NavbarComponent,
+    LoginRedirectComponentComponent,
 
   ],
   imports: [
@@ -48,7 +50,9 @@ import {
       { path: 'users', component: UsersPageComponent },
       { path: 'survey', component: SurveyPageComponent },
       { path: 'student-details', component: StudentDetailsFormComponent },
+      { path: 'login-redirect-component', component: LoginRedirectComponentComponent },
     ]),
+
     ReactiveFormsModule,
     FormsModule,
     MatSelectModule,
@@ -61,27 +65,7 @@ import {
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-  {
-    provide: 'SocialAuthServiceConfig',
-    useValue: {
-      autoLogin: false,
-      providers: [
-        {
-          id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider(
-            '676203278903-vpp4otb0bmettevls0eh5trurjshi5u2.apps.googleusercontent.com'
-          )
-        },
-        {
-          id: FacebookLoginProvider.PROVIDER_ID,
-          provider: new FacebookLoginProvider('676203278903-vpp4otb0bmettevls0eh5trurjshi5u2.apps.googleusercontent.com')
-        }
-      ],
-      onError: (err) => {
-        console.error(err);
-      }
-    } as SocialAuthServiceConfig,
-  }],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

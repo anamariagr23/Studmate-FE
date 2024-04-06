@@ -76,8 +76,8 @@ export class StudentDetailsFormComponent implements OnInit {
       this.studentService.createStudent(formData).subscribe(
         response => {
           console.log('Student created successfully', response);
-          alert("Student created succesfully");
-          // this.router.navigate(['/student-details']);
+          // alert("Student created succesfully");
+          this.router.navigate(['/users']);
 
         },
         error => {
