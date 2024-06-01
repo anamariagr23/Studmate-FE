@@ -1,16 +1,25 @@
+export interface Category {
+    category: string;
+    score: number;
+}
+
 export interface Student {
     id: number;
     firstname: string;
     lastname: string;
+    status: string;
+    major: string;
+    year_of_study: number;
     description: string;
     avatar_link: string | null;
-    details_completed: boolean;
-    id_major: number;
-    id_sex: number;
-    id_status: number;
-    is_blocked: boolean;
-    year_of_study: number;
+    total_score: number;
+    categories: Category[];
 }
+
+export interface StudentMatchesResponse {
+    students: Student[];
+}
+
 
 export interface StudentsResponse {
     students: Student[];

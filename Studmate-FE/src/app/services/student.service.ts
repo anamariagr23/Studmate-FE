@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DormResponse, Major, MajorResponse, Student, StudentsResponse, SexResponse } from 'src/shared/models/student.interface';
+import { DormResponse, Major, MajorResponse, Student, StudentsResponse, SexResponse, StudentMatchesResponse } from 'src/shared/models/student.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,10 @@ export class StudentService {
 
   getSexes(): Observable<SexResponse> {
     return this.http.get<SexResponse>(`https://127.0.0.1:5000/sexes`);
+  }
+
+  getStudentMatches(): Observable<StudentMatchesResponse> {
+    return this.http.get<StudentMatchesResponse>(`https://127.0.0.1:5000/student-matches`);
   }
 }
 
