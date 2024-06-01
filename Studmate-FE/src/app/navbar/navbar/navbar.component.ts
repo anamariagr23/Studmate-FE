@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+declare var handleSignout: any;
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,12 @@ export class NavbarComponent {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('details_completed');
-    this.router.navigate(['/login']);
+    handleSignout();
+    sessionStorage.removeItem("googleCredential");
+    this.router.navigate(['/login']).then(() => {
+      window.location.reload();
+    });
+
   }
 
 }

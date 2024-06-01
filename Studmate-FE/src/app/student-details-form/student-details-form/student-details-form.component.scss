@@ -1,61 +1,3 @@
-.form-container {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
-    padding: 20px;
-    max-width: 600px;
-    margin-bottom: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
-}
-
-.form-header {
-    background-color: #3f51b5;
-    color: white;
-    padding: 16px;
-    font-size: 24px;
-    text-align: center;
-    border-radius: 8px 8px 0 0;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 500px;
-    margin: 20px auto;
-}
-
-.form-group {
-    margin-bottom: 15px;
-    width: 100%;
-    clear: both;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-input[type="text"],
-select,
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    resize: vertical;
-    font-size: 16px;
-    float: none;
-    display: block;
-}
-
 button[type="submit"] {
     background-color: #3f51b5;
     color: white;
@@ -74,35 +16,64 @@ button[type="submit"]:hover {
     background-color: #022552;
 }
 
-@media (max-width: 768px) {
+.form-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    max-width: 1000px;
+    margin: 40px auto;
+}
 
-    label,
-    input[type="text"],
-    select,
-    textarea,
-    button[type="submit"] {
-        font-size: 14px;
+.form-header {
+    background-color: #3f51b5;
+    color: white;
+    padding: 16px;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 48%;
+    margin: 10px;
+}
+
+.label-wrapper {
+    min-height: 60px;
+    /* Adjust based on your typical label height */
+}
+
+.field-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-mat-form-field {
+    width: 100%;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
     }
 
     .form-group {
-        margin-bottom: 10px;
-    }
-
-    button[type="submit"] {
-        padding: 10px 15px;
-    }
-}
-
-@media (max-width: 600px) {
-    form {
-        width: 100%;
-        margin: 10px;
-        padding: 15px;
-    }
-
-    button[type="submit"] {
-        width: 100%;
-        float: none;
-        margin-top: 10px;
+        flex: 1 1 100%;
     }
 }

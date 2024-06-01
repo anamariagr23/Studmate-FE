@@ -20,6 +20,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from '@abacritt/angularx-social-login';
+import { LoginRedirectComponentComponent } from './login-redirect-component/login-redirect-component.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +37,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     AvatarComponent,
     StudentDetailsFormComponent,
     NavbarComponent,
+    LoginRedirectComponentComponent,
 
   ],
   imports: [
@@ -43,7 +50,9 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
       { path: 'users', component: UsersPageComponent },
       { path: 'survey', component: SurveyPageComponent },
       { path: 'student-details', component: StudentDetailsFormComponent },
+      { path: 'login-redirect-component', component: LoginRedirectComponentComponent },
     ]),
+
     ReactiveFormsModule,
     FormsModule,
     MatSelectModule,
@@ -52,9 +61,11 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     MatTabsModule,
     MatIconModule,
     MatButtonModule,
+    SocialLoginModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
