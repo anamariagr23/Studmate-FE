@@ -5,5 +5,6 @@ export interface AuthResponse {
     email: string;
     id_role: number;
     token: string;
+    details_completed: boolean;
   };
 }
