@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationService } from 'src/app/services/navigation.service';
 import { StudentService } from 'src/app/services/student.service';
+import { ROUTE_PATHS } from 'src/shared/constants/route-paths';
 import { Major, MajorResponse, Dorm, Sex } from 'src/shared/models/student.interface';
 
 @Component({
@@ -19,7 +20,7 @@ export class StudentDetailsFormComponent implements OnInit {
   availableImportanceScores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   usedImportanceScores: Set<number> = new Set<number>();
 
-  constructor(private fb: FormBuilder, private studentService: StudentService, private router: Router) {
+  constructor(private fb: FormBuilder, private studentService: StudentService, private navigationService: NavigationService) {
     this.createForm();
   }
 
@@ -158,7 +159,7 @@ export class StudentDetailsFormComponent implements OnInit {
       this.studentService.updateStudent(formData).subscribe(
         response => {
           console.log('Student created successfully', response);
-          this.router.navigate(['/users']);
+          this.navigationService.navigateTo(ROUTE_PATHS.USERS);
 
         },
         error => {

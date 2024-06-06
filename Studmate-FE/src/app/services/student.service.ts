@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DormResponse, Major, MajorResponse, Student, StudentsResponse, SexResponse, StudentMatchesResponse } from 'src/shared/models/student.interface';
@@ -32,6 +32,13 @@ export class StudentService {
 
   getStudentMatches(): Observable<StudentMatchesResponse> {
     return this.http.get<StudentMatchesResponse>(`https://127.0.0.1:5000/student-matches`);
+  }
+
+  getStudentProfile(studentId: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get<any>(`https://127.0.0.1:5000/student/${studentId}`, { headers });
   }
 }
 

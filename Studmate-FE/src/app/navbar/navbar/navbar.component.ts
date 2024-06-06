@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationService } from 'src/app/services/navigation.service';
+import { ROUTE_PATHS } from 'src/shared/constants/route-paths';
 declare var handleSignout: any;
 
 @Component({
@@ -9,17 +10,19 @@ declare var handleSignout: any;
 })
 export class NavbarComponent {
 
-  constructor(private router: Router) { };
+  constructor(private navigationService: NavigationService) { };
 
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('details_completed');
     handleSignout();
     sessionStorage.removeItem("googleCredential");
-    this.router.navigate(['/login']).then(() => {
-      window.location.reload();
-    });
+    this.navigationService.navigateToWithReload(ROUTE_PATHS.LOGIN);
 
+  }
+
+  navigateToUsers(): void {
+    this.navigationService.navigateToUsers();
   }
 
 }

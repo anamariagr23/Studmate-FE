@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
 import { Observable } from 'rxjs';
 import { AuthResponse } from 'src/shared/models/auth-response.interface';
+import { NavigationService } from './navigation.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private navigationService: NavigationService) { }
 
   loginWithPassword(email: string, password: string): Observable<AuthResponse> {
     const credentials = { email, password };
@@ -32,9 +32,9 @@ export class AuthService {
     }
 
     if (!details_completed && response.data.id_role === 3) {
-      this.router.navigate(['/student-details']);
+      this.navigationService.navigateToStudentDetails();
     } else {
-      this.router.navigate(['/users']);
+      this.navigationService.navigateToUsers();
     }
   }
 

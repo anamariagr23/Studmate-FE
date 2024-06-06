@@ -26,6 +26,7 @@ import {
   FacebookLoginProvider
 } from '@abacritt/angularx-social-login';
 import { LoginRedirectComponentComponent } from './login-redirect-component/login-redirect-component.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { LoginRedirectComponentComponent } from './login-redirect-component/logi
     StudentDetailsFormComponent,
     NavbarComponent,
     LoginRedirectComponentComponent,
+    ProfileComponent,
 
   ],
   imports: [
