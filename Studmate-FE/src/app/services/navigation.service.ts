@@ -31,7 +31,12 @@ export class NavigationService {
     this.navigateTo(ROUTE_PATHS.STUDENT_DETAILS);
   }
 
-  navigateToUserProfile(studentId: number): void {
-    this.router.navigate(['/profile'], { queryParams: { id: studentId } });
+  navigateToUserProfile(studentId: number | null): void {
+    if (studentId) {
+      this.router.navigate(['/profile'], { queryParams: { id: studentId } });
+    } else {
+      console.error('No student ID found in UserService');
+    }
   }
+
 }

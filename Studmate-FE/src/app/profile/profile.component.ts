@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StudentService } from '../services/student.service';
 import { UtilService } from 'src/shared/utils/util.service';
+import { UserService } from '../services/user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -12,17 +14,32 @@ export class ProfileComponent implements OnInit {
   student: any;
   compatibilityScore: any;
   categories!: any[];
+  loggedInUserId?: number | null;
+  studentId?: number;
+  private queryParamsSubscription!: Subscription;
 
-  constructor(private route: ActivatedRoute, private utilService: UtilService, private studentService: StudentService) { }
+  constructor(private route: ActivatedRoute, private utilService: UtilService, private studentService: StudentService, private userService: UserService) { }
+
 
   ngOnInit(): void {
-    const studentId = Number(this.route.snapshot.queryParamMap.get('id'));
+    this.loggedInUserId = this.userService.getStudentId();
+    this.queryParamsSubscription = this.route.queryParams.subscribe(params => {
+      this.studentId = Number(params['id']);
+      this.loadStudentProfile(this.studentId);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.queryParamsSubscription.unsubscribe();
+  }
+
+  loadStudentProfile(studentId: number): void {
     this.studentService.getStudentProfile(studentId).subscribe(response => {
       this.student = response.student;
       this.compatibilityScore = response.compatibility_score;
       this.categories = response.categories;
-      console.log(this.student)
-      console.log(this.categories)
+      console.log(this.student);
+      console.log(this.categories);
     });
   }
 

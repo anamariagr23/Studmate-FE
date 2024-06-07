@@ -1,0 +1,8 @@
+<div *ngFor="let conversation of conversations">
+    <img [src]="conversation.avatar_link" alt="Avatar">
+    <div>{{ conversation.firstname }} {{ conversation.lastname }}</div>
+    <div *ngIf="conversation.last_message">
+        <p>{{ conversation.last_message.value }}</p>
+        <p>{{ conversation.last_message.sent_at }}</p>
+    </div>
+</div>

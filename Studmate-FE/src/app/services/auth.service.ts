@@ -3,13 +3,14 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { AuthResponse } from 'src/shared/models/auth-response.interface';
 import { NavigationService } from './navigation.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private navigationService: NavigationService) { }
+  constructor(private http: HttpClient, private navigationService: NavigationService, private userService: UserService) { }
 
   loginWithPassword(email: string, password: string): Observable<AuthResponse> {
     const credentials = { email, password };
@@ -25,11 +26,14 @@ export class AuthService {
   handleAuthenticationResponse(response: AuthResponse) {
     const token = response.data.token;
     const details_completed = response.data?.details_completed;
+    const studentId = response.data.id;
+
     console.log(response);
     localStorage.setItem('token', token);
     if (details_completed) {
       localStorage.setItem('details_completed', details_completed.toString());
     }
+    this.userService.setStudentId(studentId);
 
     if (!details_completed && response.data.id_role === 3) {
       this.navigationService.navigateToStudentDetails();

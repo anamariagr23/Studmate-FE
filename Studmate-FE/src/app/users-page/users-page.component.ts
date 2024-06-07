@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Student } from '../../shared/models/student.interface';
 import { StudentService } from '../services/student.service';
 import { NavigationService } from '../services/navigation.service';

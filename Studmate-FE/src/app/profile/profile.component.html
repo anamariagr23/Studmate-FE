@@ -15,29 +15,30 @@
     </div>
     <div class="right-section">
         <div class="top-section">
-
-            <span class="normal-bold-text">Average score</span>
-            <div class="bar-container">
-                <div class="bar" [style.width.%]="compatibilityScore * 100"
-                    [style.background]="getColorForPercentage(compatibilityScore)"></div>
-                <span class="bar-label">{{ (compatibilityScore * 100) | number:'1.0-0' }}%</span>
+            <div *ngIf="loggedInUserId!= studentId">
+                <span class="normal-bold-text">Average score</span>
+                <div class="bar-container">
+                    <div class="bar" [style.width.%]="compatibilityScore * 100"
+                        [style.background]="getColorForPercentage(compatibilityScore)"></div>
+                    <span class="bar-label">{{ (compatibilityScore * 100) | number:'1.0-0' }}%</span>
+                </div>
+                <button mat-stroked-button color="primary" class="blue-button">
+                    <mat-icon>chat</mat-icon>
+                    Chat
+                </button>
+                <button mat-stroked-button class="roommate-button"><mat-icon>people</mat-icon>Request to Be
+                    Roommates</button>
             </div>
-            <button mat-stroked-button color="primary" class="blue-button">
-                <mat-icon>chat</mat-icon>
-                Chat
-            </button>
-
-
-            <button mat-stroked-button class="roommate-button"><mat-icon>people</mat-icon>Request to Be
-                Roommates</button>
         </div>
+
         <div *ngIf="categories && categories.length" class="categories-wrapper">
             <div *ngFor="let category of categories" class="category-item">
                 <div class="category-container">
                     <span class="category">{{ category.category }}</span>
-                    <span class="percentage-label">{{ (category.score * 100) | number:'1.0-0' }}%</span>
+                    <span class="percentage-label" *ngIf="loggedInUserId!= studentId">{{ (category.score * 100) |
+                        number:'1.0-0' }}%</span>
                 </div>
-                <div class="progress-bar">
+                <div *ngIf="loggedInUserId!= studentId" class="progress-bar">
                     <div class="progress" [style.width.%]="category.score * 100"
                         [style.background]="getColorForPercentage(category.score)"></div>
 

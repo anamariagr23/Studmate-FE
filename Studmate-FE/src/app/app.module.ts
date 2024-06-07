@@ -27,6 +27,8 @@ import {
 } from '@abacritt/angularx-social-login';
 import { LoginRedirectComponentComponent } from './login-redirect-component/login-redirect-component.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MessageDrawerComponent } from './message-drawer/message-drawer.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { ProfileComponent } from './profile/profile.component';
     NavbarComponent,
     LoginRedirectComponentComponent,
     ProfileComponent,
+    MessageDrawerComponent,
 
   ],
   imports: [
@@ -64,6 +67,7 @@ import { ProfileComponent } from './profile/profile.component';
     MatIconModule,
     MatButtonModule,
     SocialLoginModule,
+    MatSidenavModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

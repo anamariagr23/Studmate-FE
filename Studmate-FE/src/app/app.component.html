@@ -1,2 +1,11 @@
-<router-outlet></router-outlet>
-<!-- <app-avatar></app-avatar> -->
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+    <mat-sidenav #drawer mode="side" position="end" class="drawer" [disableClose]="true">
+        <button mat-icon-button (click)="drawerService.closeDrawer()" class="close-button">
+            <mat-icon>close</mat-icon>
+        </button>
+        <app-message-drawer></app-message-drawer>
+    </mat-sidenav>
+</mat-sidenav-container>
