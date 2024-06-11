@@ -1,27 +1,30 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    /* or any height you want */
+    height: calc(100vh - 80px);
     padding: 10px;
+    box-sizing: border-box;
+    /* include padding in height calculation */
 }
 
 .messages {
     flex: 1;
     overflow-y: auto;
-    padding-top: 30px;
-    padding-bottom: 10px;
-    /* space for the input field */
+    margin-bottom: 60px;
 }
 
 .message-input {
+    position: sticky;
+    bottom: 0;
     display: flex;
     align-items: center;
     padding: 10px;
     background-color: #f0f0f0;
-    /* or any background color you prefer */
     border-top: 1px solid #ccc;
+    width: 90%;
 }
+
+
 
 .message-input input {
     flex: 1;
@@ -46,4 +49,45 @@
 
 .messages .message {
     margin-bottom: 10px;
+    padding: 8px 15px;
+    border-radius: 12px;
+    max-width: 60%;
+}
+
+.messages .message[current-user='true'] {
+    background-color: #007bff;
+    color: white;
+    margin-left: auto;
+    text-align: right;
+}
+
+.messages .message[current-user='false'] {
+    background-color: #e0e0e0;
+    color: black;
+    margin-right: auto;
+    text-align: left;
+}
+
+@media (max-width: 600px) {
+    .chat-container {
+        height: calc(100vh - 50px);
+        padding: 5px;
+    }
+
+    .message-input {
+        padding: 5px;
+    }
+
+    .message-input input {
+        padding: 8px;
+    }
+
+    .message-input button {
+        padding: 8px 15px;
+    }
+
+    .messages .message {
+        padding: 6px 12px;
+        max-width: 100%;
+    }
 }

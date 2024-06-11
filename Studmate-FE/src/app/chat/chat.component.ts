@@ -32,7 +32,7 @@ export class ChatComponent {
 
     // Subscribe to new messages
     this.messageSubscription = this.chatService.getMessage().subscribe(data => {
-      if (data.conversation_id === this.conversationId) {
+      if (data.conversation_id == this.conversationId) {
         this.messages.push(data);
       }
     });

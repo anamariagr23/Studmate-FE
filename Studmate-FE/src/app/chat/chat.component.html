@@ -1,7 +1,8 @@
 <div class="chat-container">
     <div class="messages">
-        <div *ngFor="let msg of messages" class="message">
-            <strong>{{ msg.author_id === currentUser ? 'Me' : 'User' }}:</strong> {{ msg.value }}
+        <div *ngFor="let msg of messages" class="message"
+            [attr.current-user]="msg.author_id === currentUser ? 'true' : 'false'">
+            {{ msg.value }}
         </div>
     </div>
     <div class="message-input">
