@@ -7,20 +7,7 @@ import { DrawerService } from './services/drawer.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  @ViewChild('drawer', { static: true }) drawer?: MatSidenav;
-  title = 'Studmate-FE';
+export class AppComponent {
 
-  constructor(public drawerService: DrawerService) { }
-
-  ngOnInit() {
-    this.drawerService.drawerState$.subscribe(isOpen => {
-      if (isOpen) {
-        this.drawer?.open();
-      } else {
-        this.drawer?.close();
-      }
-    });
-  }
 
 }

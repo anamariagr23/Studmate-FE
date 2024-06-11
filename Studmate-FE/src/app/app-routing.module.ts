@@ -5,14 +5,27 @@ import { UsersPageComponent } from './users-page/users-page.component';
 import { SurveyPageComponent } from './survey-page/survey-page.component';
 import { StudentDetailsFormComponent } from './student-details-form/student-details-form/student-details-form.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MessageDrawerComponent } from './message-drawer/message-drawer.component';
+import { LoginRedirectComponentComponent } from './login-redirect-component/login-redirect-component.component';
+import { LayoutComponent } from './layout/layout.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'users', component: UsersPageComponent },
-  { path: 'survey', component: SurveyPageComponent },
   { path: 'student-details', component: StudentDetailsFormComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'login-redirect-component', component: LoginRedirectComponentComponent },
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: 'users', component: UsersPageComponent },
+      { path: 'survey', component: SurveyPageComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'chat/:id', component: ChatComponent },
+    ],
+  },
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({

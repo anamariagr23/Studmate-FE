@@ -1,0 +1,32 @@
+body {
+    background-color: #eaf4f7;
+}
+
+.sidenav-container {
+    height: 100%;
+}
+
+.drawer {
+    width: 500px;
+    padding: 16px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    justify-content: space-between;
+}
+
+.header.single-button {
+    justify-content: flex-end;
+}
+
+.close-button,
+.back-button {
+    background-color: white;
+}
+
+.close-button {
+    margin-left: auto;
+}

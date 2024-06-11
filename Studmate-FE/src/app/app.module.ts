@@ -29,6 +29,12 @@ import { LoginRedirectComponentComponent } from './login-redirect-component/logi
 import { ProfileComponent } from './profile/profile.component';
 import { MessageDrawerComponent } from './message-drawer/message-drawer.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { LayoutComponent } from './layout/layout.component';
+import { ChatComponent } from './chat/chat.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'https://127.0.0.1:5000', options: {} };
+
 
 @NgModule({
   declarations: [
@@ -43,20 +49,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     LoginRedirectComponentComponent,
     ProfileComponent,
     MessageDrawerComponent,
+    LayoutComponent,
+    ChatComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot([
-      { path: '', component: LoginComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'users', component: UsersPageComponent },
-      { path: 'survey', component: SurveyPageComponent },
-      { path: 'student-details', component: StudentDetailsFormComponent },
-      { path: 'login-redirect-component', component: LoginRedirectComponentComponent },
-    ]),
+
 
     ReactiveFormsModule,
     FormsModule,
@@ -68,6 +69,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatButtonModule,
     SocialLoginModule,
     MatSidenavModule,
+    SocketIoModule.forRoot(config)
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
