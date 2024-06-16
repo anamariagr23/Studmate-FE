@@ -2,11 +2,13 @@
     <div class="navbar-left">
         <img src="../../../assets/images/logo.png" alt="Studmate Logo">
         <span class="title" (click)="navigateToUsers()">Studmate</span>
+
     </div>
     <div class="navbar-right">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="navigateToRoomateRequests()">
             <mat-icon>group</mat-icon>
         </button>
+        <div *ngIf="notificationCount > 0" class="notification-bubble">{{ notificationCount }}</div>
         <button mat-icon-button (click)="openDrawer()">
             <mat-icon>message</mat-icon>
         </button>

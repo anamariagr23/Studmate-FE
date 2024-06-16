@@ -35,11 +35,20 @@ export class StudentService {
   }
 
   getStudentProfile(studentId: number): Observable<any> {
-    // const headers = new HttpHeaders({
-    //   'Authorization': `Bearer ${localStorage.getItem('token')}`
-    // });
     return this.http.get<any>(`https://127.0.0.1:5000/student/${studentId}`);
   }
+
+  sendRoommateRequest(requesterId: number, targetId: number): Observable<any> {
+    return this.http.post('https://127.0.0.1:5000/roommate_requests', {
+      requester_id: requesterId,
+      target_id: targetId
+    });
+  }
+
+  checkRoommateRequest(requesterId: number, targetId: number): Observable<any> {
+    return this.http.get(`https://127.0.0.1:5000/check_request/${requesterId}/${targetId}`);
+  }
+
 }
 
 

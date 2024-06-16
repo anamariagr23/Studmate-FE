@@ -39,4 +39,8 @@ export class NavigationService {
     }
   }
 
+  navigateToRoomateRequests(): void {
+    this.navigateTo(ROUTE_PATHS.REQUESTS);
+  }
+
 }

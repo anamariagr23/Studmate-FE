@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<ul *ngIf="roommateRequests.length > 0; else noRequests" class="request-list">
+    <li *ngFor="let request of roommateRequests" class="request-card">
+        <div class="request-content">
+            <div class="avatar-and-info">
+                <img [src]="request.requester_avatar" alt="Requester Avatar" class="avatar">
+                <div>
+                    <div class="name">{{ request.requester_firstname }} {{ request.requester_lastname }}</div>
+                    <div class="status">{{ request.requester_status_id === 1 ? 'Not Matched' : 'Matched' }}</div>
+                    <div class="status">{{ request.viewed === false ? 'Not Seen' : 'Seen' }}</div>
+                </div>
+            </div>
+            <div class="actions">
+                <button mat-raised-button color="primary">Accept</button>
+                <button mat-raised-button color="warn">Decline</button>
+            </div>
+        </div>
+    </li>
+</ul>
+<ng-template #noRequests>
+    <p class="no-requests">No roommate requests found.</p>
+</ng-template>

@@ -20,6 +20,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import {
   GoogleLoginProvider,
@@ -32,6 +33,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { LayoutComponent } from './layout/layout.component';
 import { ChatComponent } from './chat/chat.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RoommateRequestsComponent } from './roommate-requests/roommate-requests.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 const config: SocketIoConfig = { url: 'https://127.0.0.1:5000', options: {} };
 
@@ -51,14 +56,16 @@ const config: SocketIoConfig = { url: 'https://127.0.0.1:5000', options: {} };
     MessageDrawerComponent,
     LayoutComponent,
     ChatComponent,
+    ConfirmDialogComponent,
+    RoommateRequestsComponent,
+    AdminPageComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-
-
+    MatDialogModule,
     ReactiveFormsModule,
     FormsModule,
     MatSelectModule,
@@ -69,6 +76,7 @@ const config: SocketIoConfig = { url: 'https://127.0.0.1:5000', options: {} };
     MatButtonModule,
     SocialLoginModule,
     MatSidenavModule,
+    MatTooltipModule,
     SocketIoModule.forRoot(config)
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

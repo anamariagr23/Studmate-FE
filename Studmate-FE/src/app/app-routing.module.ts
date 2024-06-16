@@ -9,6 +9,7 @@ import { MessageDrawerComponent } from './message-drawer/message-drawer.componen
 import { LoginRedirectComponentComponent } from './login-redirect-component/login-redirect-component.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ChatComponent } from './chat/chat.component';
+import { RoommateRequestsComponent } from './roommate-requests/roommate-requests.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'survey', component: SurveyPageComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'chat/:id', component: ChatComponent },
+      { path: 'roommate-requests', component: RoommateRequestsComponent }
     ],
   },
   { path: '**', redirectTo: 'login' },

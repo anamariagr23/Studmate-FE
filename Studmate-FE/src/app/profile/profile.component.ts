@@ -4,6 +4,8 @@ import { StudentService } from '../services/student.service';
 import { UtilService } from 'src/shared/utils/util.service';
 import { UserService } from '../services/user.service';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-profile',
@@ -17,8 +19,9 @@ export class ProfileComponent implements OnInit {
   loggedInUserId?: number | null;
   studentId?: number;
   private queryParamsSubscription!: Subscription;
+  requestMade: boolean = false;
 
-  constructor(private route: ActivatedRoute, private utilService: UtilService, private studentService: StudentService, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private utilService: UtilService, private studentService: StudentService, private userService: UserService, private dialog: MatDialog) { }
 
 
   ngOnInit(): void {
@@ -27,6 +30,11 @@ export class ProfileComponent implements OnInit {
       this.studentId = Number(params['id']);
       this.loadStudentProfile(this.studentId);
     });
+
+    if (this.loggedInUserId != this.studentId) {
+      this.checkExistingRequest();
+    }
+
   }
 
   ngOnDestroy(): void {
@@ -58,5 +66,44 @@ export class ProfileComponent implements OnInit {
       .slice(0, 10); // Get top <number> categories
   }
 
+  sendRoommateRequest(): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && this.loggedInUserId != null && this.studentId != null) {
+        this.studentService.sendRoommateRequest(this.loggedInUserId, this.studentId).subscribe({
+          next: response => {
+            console.log('Roommate request sent:', response);
+            // handle response, perhaps show a snackbar message
+          },
+          error: error => {
+            console.error('Failed to send roommate request:', error);
+            // handle error, perhaps show a snackbar message
+          }
+        });
+      }
+    });
+  }
+
+  checkExistingRequest(): void {
+    const loggedInUserId = this.loggedInUserId; // Ensure this method exists and returns the current user's ID
+    const targetUserId = this.studentId; // Implement logic to obtain the ID of the user whose profile is being viewed
+
+    if (loggedInUserId && targetUserId) {
+      this.studentService.checkRoommateRequest(loggedInUserId, targetUserId).subscribe({
+        next: (response) => {
+          if (response.exists) {
+            this.requestMade = true; // Disable button if a request already exists
+          }
+        },
+        error: (error) => {
+          console.error('Error checking roommate request:', error);
+        }
+      });
+    }
+
+
+  }
 }

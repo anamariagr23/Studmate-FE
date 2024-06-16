@@ -26,8 +26,10 @@
                     <mat-icon>chat</mat-icon>
                     Chat
                 </button>
-                <button mat-stroked-button class="roommate-button"><mat-icon>people</mat-icon>Request to Be
+                <button mat-stroked-button class="roommate-button" (click)="sendRoommateRequest()"
+                    [disabled]="requestMade"><mat-icon>people</mat-icon>Request to Be
                     Roommates</button>
+
             </div>
         </div>
 
