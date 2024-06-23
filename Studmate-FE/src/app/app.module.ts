@@ -21,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import {
   GoogleLoginProvider,
@@ -37,6 +38,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { MatDialogModule } from '@angular/material/dialog';
 import { RoommateRequestsComponent } from './roommate-requests/roommate-requests.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { DormAdminPageComponent } from './dorm-admin-page/dorm-admin-page.component';
 
 const config: SocketIoConfig = { url: 'https://127.0.0.1:5000', options: {} };
 
@@ -59,6 +61,7 @@ const config: SocketIoConfig = { url: 'https://127.0.0.1:5000', options: {} };
     ConfirmDialogComponent,
     RoommateRequestsComponent,
     AdminPageComponent,
+    DormAdminPageComponent,
 
   ],
   imports: [
@@ -77,6 +80,7 @@ const config: SocketIoConfig = { url: 'https://127.0.0.1:5000', options: {} };
     SocialLoginModule,
     MatSidenavModule,
     MatTooltipModule,
+    MatProgressSpinnerModule,
     SocketIoModule.forRoot(config)
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -11,6 +11,7 @@ import { UtilService } from 'src/shared/utils/util.service';
 })
 export class UsersPageComponent implements OnInit {
   students: Student[] = [];
+  isLoading: boolean = true;
 
   constructor(private studentService: StudentService, private utilService: UtilService, private navigationService: NavigationService) { }
 
@@ -31,6 +32,7 @@ export class UsersPageComponent implements OnInit {
   getStudentMatches(): void {
     this.studentService.getStudentMatches().subscribe(response => {
       this.students = response.students;
+      this.isLoading = false;
     }, error => {
       console.error('Error fetching student matches:', error);
     });

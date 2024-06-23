@@ -10,12 +10,16 @@ import { LoginRedirectComponentComponent } from './login-redirect-component/logi
 import { LayoutComponent } from './layout/layout.component';
 import { ChatComponent } from './chat/chat.component';
 import { RoommateRequestsComponent } from './roommate-requests/roommate-requests.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { DormAdminPageComponent } from './dorm-admin-page/dorm-admin-page.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'student-details', component: StudentDetailsFormComponent },
   { path: 'login-redirect-component', component: LoginRedirectComponentComponent },
+  { path: 'admin-page', component: AdminPageComponent },
+  { path: 'dorm-admin-page', component: DormAdminPageComponent },
   {
     path: '',
     component: LayoutComponent,

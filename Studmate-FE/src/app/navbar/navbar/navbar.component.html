@@ -1,10 +1,13 @@
 <nav class="navbar">
     <div class="navbar-left">
         <img src="../../../assets/images/logo.png" alt="Studmate Logo">
-        <span class="title" (click)="navigateToUsers()">Studmate</span>
-
+        <span *ngIf="idRole === 3; else nonClickableTitle" class="title" (click)="navigateToUsers()">Studmate</span>
+        <ng-template #nonClickableTitle>
+            <span class="title">Studmate</span>
+        </ng-template>
     </div>
     <div class="navbar-right">
+        <!-- <div *ngIf="idRole === 3"> -->
         <button mat-icon-button (click)="navigateToRoomateRequests()">
             <mat-icon>group</mat-icon>
         </button>
@@ -15,6 +18,7 @@
         <button mat-icon-button (click)="navigateToPersonalProfile()">
             <mat-icon>account_circle</mat-icon>
         </button>
+        <!-- </div> -->
         <button mat-icon-button (click)="logout()">
             <mat-icon>exit_to_app</mat-icon>
         </button>

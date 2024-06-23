@@ -31,6 +31,14 @@ export class NavigationService {
     this.navigateTo(ROUTE_PATHS.STUDENT_DETAILS);
   }
 
+  navigateToAdminPage(): void {
+    this.navigateTo(ROUTE_PATHS.ADMIN);
+  }
+
+  navigateToDormAdminPage(): void {
+    this.navigateTo(ROUTE_PATHS.DORM_ADMIN);
+  }
+
   navigateToUserProfile(studentId: number | null): void {
     if (studentId) {
       this.router.navigate(['/profile'], { queryParams: { id: studentId } });

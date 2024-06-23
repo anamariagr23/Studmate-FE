@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RoommateService } from '../services/roommate.service';
 import { RoommateRequest } from 'src/shared/models/roommate.interface';
 import { UserService } from '../services/user.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-roommate-requests',
@@ -12,7 +14,7 @@ export class RoommateRequestsComponent {
   roommateRequests: RoommateRequest[] = [];
   targetId?: number | null;
 
-  constructor(private roommateRequestService: RoommateService, private userService: UserService) { }
+  constructor(private roommateRequestService: RoommateService, private userService: UserService, public dialog: MatDialog) { }
 
 
   ngOnInit(): void {
@@ -26,6 +28,7 @@ export class RoommateRequestsComponent {
     this.roommateRequestService.getRoommateRequestsForTarget(targetId).subscribe({
       next: (response) => {
         this.roommateRequests = response.requests;
+        console.log(this.roommateRequests);
         this.markRequestsAsViewed();
       },
       error: (error) => console.error('Error fetching roommate requests:', error)
@@ -39,6 +42,25 @@ export class RoommateRequestsComponent {
         console.log('Requests marked as viewed');
       });
     }
+  }
+
+
+  acceptRequest(requestId: number): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.roommateRequestService.acceptRequest(requestId).subscribe({
+          next: () => {
+            console.log('Request accepted');
+            this.loadRoommateRequests(this.targetId!); // Reload requests after accepting one
+          },
+          error: (error) => console.error('Error accepting request:', error)
+        });
+      }
+    });
   }
 
 }

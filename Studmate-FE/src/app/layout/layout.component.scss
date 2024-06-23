@@ -1,9 +1,11 @@
-body {
-    background-color: #eaf4f7;
+:host {
+    display: block;
+    --mat-sidenav-content-background-color: #eaf4f7;
 }
 
+
 .sidenav-container {
-    height: 100%;
+    height: 100vh;
 }
 
 .drawer {

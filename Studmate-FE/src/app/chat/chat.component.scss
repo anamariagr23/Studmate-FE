@@ -2,15 +2,15 @@
     display: flex;
     flex-direction: column;
     height: calc(100vh - 80px);
-    padding: 10px;
     box-sizing: border-box;
-    /* include padding in height calculation */
+    /* Ensure padding is included in height calculation */
 }
 
 .messages {
     flex: 1;
     overflow-y: auto;
-    margin-bottom: 60px;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .message-input {
@@ -21,10 +21,7 @@
     padding: 10px;
     background-color: #f0f0f0;
     border-top: 1px solid #ccc;
-    width: 90%;
 }
-
-
 
 .message-input input {
     flex: 1;
@@ -52,6 +49,7 @@
     padding: 8px 15px;
     border-radius: 12px;
     max-width: 60%;
+    box-sizing: border-box;
 }
 
 .messages .message[current-user='true'] {

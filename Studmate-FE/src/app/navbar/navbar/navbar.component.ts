@@ -20,6 +20,8 @@ export class NavbarComponent {
   notificationCount: number = 0;
   userId: number | null = null;
   retryInterval: any;
+  idRole: number | null = null;
+
 
   constructor(
     private roommateService: RoommateService,
@@ -31,6 +33,7 @@ export class NavbarComponent {
 
   ngOnInit() {
     this.checkUserId();
+    this.idRole = this.getIdRoleFromLocalStorage();
     console.log(this.userId);
   }
 
@@ -50,6 +53,11 @@ export class NavbarComponent {
         }
       }, 1000); // Retry every second
     }
+  }
+
+  getIdRoleFromLocalStorage(): number | null {
+    const idRole = localStorage.getItem('id_role');
+    return idRole ? parseInt(idRole, 10) : null;
   }
 
   initializeWebSocket() {
@@ -81,6 +89,7 @@ export class NavbarComponent {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('details_completed');
+    localStorage.removeItem('id_role');
     handleSignout();
     sessionStorage.removeItem('googleCredential');
     this.userService.clearStudentId();

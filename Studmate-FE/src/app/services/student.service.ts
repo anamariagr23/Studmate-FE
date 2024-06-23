@@ -14,6 +14,10 @@ export class StudentService {
     return this.http.patch(`https://127.0.0.1:5000/students`, student);
   }
 
+  getStudentDetails(): Observable<any> {
+    return this.http.get<any>(`https://127.0.0.1:5000/student`);
+  }
+
   getStudents(): Observable<StudentsResponse> {
     return this.http.get<StudentsResponse>(`https://127.0.0.1:5000/students`);
   }

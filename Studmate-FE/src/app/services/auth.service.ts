@@ -23,24 +23,53 @@ export class AuthService {
     return this.http.post<AuthResponse>("https://localhost:5000/google-login", form);
   }
 
+  // handleAuthenticationResponse(response: AuthResponse) {
+  //   const token = response.data.token;
+  //   const details_completed = response.data?.details_completed;
+  //   const studentId = response.data.id;
+
+  //   console.log(response);
+  //   localStorage.setItem('token', token);
+  //   if (details_completed) {
+  //     localStorage.setItem('details_completed', details_completed.toString());
+  //   }
+  //   this.userService.setStudentId(studentId);
+
+  //   if (!details_completed && response.data.id_role === 3) {
+  //     this.navigationService.navigateToStudentDetails();
+  //   } else {
+  //     this.navigationService.navigateToUsers();
+  //   }
+  // }
+
   handleAuthenticationResponse(response: AuthResponse) {
     const token = response.data.token;
     const details_completed = response.data?.details_completed;
     const studentId = response.data.id;
+    const idRole = response.data.id_role;
 
     console.log(response);
     localStorage.setItem('token', token);
-    if (details_completed) {
-      localStorage.setItem('details_completed', details_completed.toString());
-    }
-    this.userService.setStudentId(studentId);
+    localStorage.setItem('id_role', idRole.toString());
 
-    if (!details_completed && response.data.id_role === 3) {
+    if (idRole === 3) {
+      if (details_completed) {
+        localStorage.setItem('details_completed', details_completed.toString());
+      }
+      this.userService.setStudentId(studentId);
+    }
+
+    if (idRole === 1) {
+      this.navigationService.navigateToAdminPage();
+    } else if (idRole === 2) {
+      this.navigationService.navigateToDormAdminPage();
+    } else if (idRole === 3 && !details_completed) {
       this.navigationService.navigateToStudentDetails();
     } else {
       this.navigationService.navigateToUsers();
     }
   }
+
 
   handleError(error: any) {
     console.error('Login failed:', error);

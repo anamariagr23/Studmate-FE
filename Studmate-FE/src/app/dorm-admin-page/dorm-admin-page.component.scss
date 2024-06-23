@@ -29,58 +29,35 @@
 .avatar-and-info {
     display: flex;
     align-items: center;
+    flex: 1;
+}
+
+.requester-info {
+    justify-content: flex-start;
+    margin-right: 20px;
+    /* Add space to the right */
+}
+
+.target-info {
+    justify-content: flex-end;
+    margin-left: 20px;
+    /* Add space to the left */
 }
 
 .avatar {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    margin-right: 20px;
+    margin: 0 10px;
+    /* Ensure space around the avatar */
 }
 
 .name {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 22px;
+    /* Increase font size */
+    font-weight: 500;
+    /* Change font weight */
 }
-
-.status {
-    font-size: 16px;
-    color: #666;
-}
-
-.actions {
-    display: flex;
-    gap: 10px;
-}
-
-.no-requests {
-    text-align: center;
-    margin-top: 20px;
-}
-
-
-.request-card.grayed-out {
-    opacity: 0.5;
-    pointer-events: none;
-    /* Optional: disable interactions */
-}
-
-.accepted-status.accepted {
-    background-color: #4caf50;
-    /* Green */
-}
-
-.accepted-button {
-    background-color: green !important;
-    color: white !important;
-    font-size: 14px;
-    border-radius: 4px;
-    pointer-events: none;
-    /* Disable click */
-    cursor: default;
-    /* Change cursor to default */
-}
-
 
 .accepted-status {
     padding: 5px 10px;
@@ -94,6 +71,29 @@
     /* Prevent shrinking */
 }
 
+.accepted-status.pending {
+    background-color: #aaa;
+}
+
+.accepted-status.accepted {
+    background-color: #4caf50;
+    /* Green */
+}
+
+.accepted-status.declined {
+    background-color: #f44336;
+    /* Red */
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.no-requests {
+    text-align: center;
+    margin-top: 20px;
+}
 
 @media (max-width: 768px) {
     .request-card {
@@ -103,5 +103,15 @@
 
     .actions {
         margin-top: 10px;
+    }
+
+    .avatar-and-info {
+        margin: 10px 0;
+        /* Adjust margin for smaller screens */
+    }
+
+    .accepted-status {
+        margin: 10px 0;
+        /* Adjust margin for smaller screens */
     }
 }

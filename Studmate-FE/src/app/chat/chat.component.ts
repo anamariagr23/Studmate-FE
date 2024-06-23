@@ -75,3 +75,4 @@ export class ChatComponent {
     this.back.emit(); // Emit the back event
   }
 }
+

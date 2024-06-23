@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar>
 <ul *ngIf="roommateRequests.length > 0; else noRequests" class="request-list">
     <li *ngFor="let request of roommateRequests" class="request-card">
         <div class="request-content">
@@ -11,8 +11,48 @@
                 </div>
             </div>
             <div class="actions">
-                <button mat-raised-button color="primary">Accept</button>
+                <button mat-raised-button color="primary" (click)="acceptRequest(request.request_id)">Accept</button>
+
                 <button mat-raised-button color="warn">Decline</button>
+            </div>
+        </div>
+    </li>
+</ul>
+<ng-template #noRequests>
+    <p class="no-requests">No roommate requests found.</p>
+</ng-template> -->
+
+
+
+<app-navbar></app-navbar>
+<ul *ngIf="roommateRequests.length > 0; else noRequests" class="request-list">
+    <li *ngFor="let request of roommateRequests" class="request-card"
+        [ngClass]="{'grayed-out': request.requester_status_id === 2 && !request.accepted}">
+        <div class="request-content">
+            <div class="avatar-and-info">
+                <img [src]="request.requester_avatar" alt="Requester Avatar" class="avatar">
+                <div>
+                    <div class="name">{{ request.requester_firstname }} {{ request.requester_lastname }}</div>
+                    <div class="status">{{ request.requester_status_id === 1 ? 'Not Matched' : 'Matched' }}</div>
+                    <div class="status">{{ request.viewed === false ? 'Not Seen' : 'Seen' }}</div>
+                </div>
+            </div>
+            <div class="actions">
+                <button *ngIf="!request.accepted" mat-raised-button color="primary"
+                    (click)="acceptRequest(request.request_id)">Accept</button>
+                <button *ngIf="!request.accepted" mat-raised-button color="warn">Decline</button>
+                <!-- <div *ngIf="request.accepted" class="accepted-status" [ngClass]="{
+                    'pending': request.accepted === null,
+                    'accepted': request.accepted === true,
+                    'declined': request.accepted === false
+                  }">
+                    {{ request.accepted === null ? 'Pending' : (request.accepted ? 'Accepted' : 'Declined') }}
+                </div> -->
+                <!-- <div *ngIf="request.accepted === true" class="accepted-status accepted">
+                    {{ request.accepted === null ? 'Pending' : (request.accepted ? 'Accepted' : 'Declined') }}
+                </div> -->
+
+                <button *ngIf="request.accepted === true" mat-raised-button class="accepted-button">Accepted</button>
             </div>
         </div>
     </li>
