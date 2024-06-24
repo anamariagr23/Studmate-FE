@@ -40,7 +40,7 @@ import { RoommateRequestsComponent } from './roommate-requests/roommate-requests
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { DormAdminPageComponent } from './dorm-admin-page/dorm-admin-page.component';
 
-const config: SocketIoConfig = { url: 'https://127.0.0.1:5000', options: {} };
+const config: SocketIoConfig = { url: 'wss://127.0.0.1:5000', options: {} };
 
 
 @NgModule({

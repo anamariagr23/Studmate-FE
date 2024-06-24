@@ -2,6 +2,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { ChatService } from '../services/chat.service';
 import { Subscription } from 'rxjs';
 import { Router, RouterOutlet } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { ConversationSummary } from 'src/shared/models/chat.interface';
 
 @Component({
   selector: 'app-message-drawer',
@@ -12,15 +14,35 @@ export class MessageDrawerComponent {
   @Output() openChat = new EventEmitter<number>();
   conversations: any[] = [];
   messageSubscription?: Subscription;
+  onlineuserStatusSubscription?: Subscription;
   selectedUserId?: number;
 
-  constructor(private chatService: ChatService, private router: Router) { }
+  constructor(private chatService: ChatService, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
     this.loadConversations();
 
+    const studentId = this.userService.getStudentId()?.toString()!;
+    if (studentId != undefined) {
+      this.chatService.connect(studentId);
+    }
+
+    this.onlineuserStatusSubscription = this.chatService.getOnlineUsers().subscribe(data => {
+      this.updateOnlineStatus(data);
+      console.log(this.conversations)
+    });
+
     this.messageSubscription = this.chatService.getMessageReceivedObservable().subscribe(data => {
       this.updateConversationList(data);
+    });
+
+  }
+
+  updateOnlineStatus(onlineUserIds: string[]) {
+    const onlineUserIdsNumber = onlineUserIds.map(id => Number(id));
+
+    this.conversations.forEach(conversation => {
+      conversation.online_status = onlineUserIdsNumber.includes(conversation.id);
     });
   }
 
@@ -60,4 +82,3 @@ export class MessageDrawerComponent {
     }
   }
 }
-

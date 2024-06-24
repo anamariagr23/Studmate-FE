@@ -13,6 +13,14 @@ export class ChatService {
   constructor(private http: HttpClient, private socket: Socket) {
 
   }
+  connect(user_id: string) {
+    this.socket.emit('user_connect', { user_id })
+  }
+
+  logout(user_id: string) {
+    this.socket.emit('user_disconnect', { user_id });
+  }
+
 
   getConversations(): Observable<ConversationsResponse> {
     return this.http.get<ConversationsResponse>(`https://127.0.0.1:5000/get-conversations`);
@@ -67,12 +75,12 @@ export class ChatService {
 
   getOnlineUsers(): Observable<any> {
     return new Observable(observer => {
-      this.socket.on('online_users', (data: any) => {
+      this.socket.on('update_user_list', (data: any) => {
         observer.next(data);
       });
 
       return () => {
-        this.socket.off('online_users');
+        this.socket.off('update_user_list');
       };
     });
   }

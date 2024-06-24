@@ -59,6 +59,7 @@
 .wrapper {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 
@@ -77,4 +78,19 @@
 
 .drawer {
     width: 500px;
+}
+
+.status-bubble {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+
+.online {
+    background-color: green;
+}
+
+.offline {
+    background-color: grey;
 }

@@ -7,6 +7,8 @@
             <div class="student-info">
                 <mat-card-title class="title">{{ conversation.firstname }} {{ conversation.lastname }}</mat-card-title>
             </div>
+            <div class="status-bubble"
+                [ngClass]="{'online': conversation.online_status, 'offline': !conversation.online_status}"></div>
         </mat-card-header>
     </div>
 </div>

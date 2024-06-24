@@ -7,6 +7,7 @@ import { DrawerService } from 'src/app/services/drawer.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { RequestViewedNotification, RoommateRequestNotification } from 'src/shared/models/roommate.interface';
 import { RoommateService } from 'src/app/services/roommate.service';
+import { ChatService } from 'src/app/services/chat.service';
 declare var handleSignout: any;
 
 @Component({
@@ -28,7 +29,8 @@ export class NavbarComponent {
     private navigationService: NavigationService,
     private userService: UserService,
     private drawerService: DrawerService,
-    private websocketService: WebsocketService
+    private websocketService: WebsocketService,
+    private chatService: ChatService
   ) { }
 
   ngOnInit() {
@@ -87,6 +89,10 @@ export class NavbarComponent {
   }
 
   logout(): void {
+    if (this.userId != null) {
+      this.chatService.logout(this.userId.toString());
+    }
+
     localStorage.removeItem('token');
     localStorage.removeItem('details_completed');
     localStorage.removeItem('id_role');

@@ -15,6 +15,7 @@ export interface ConversationSummary {
     avatar_link: string;
     conversation_id: number | null;
     last_message: LastMessage | null;
+    online_status: boolean;
 }
 
 export interface ConversationsResponse {
