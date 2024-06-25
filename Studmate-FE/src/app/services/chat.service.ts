@@ -34,6 +34,9 @@ export class ChatService {
     return this.http.get<any>(`https://127.0.0.1:5000/get-conversation/${userId}`);
   }
 
+  getLatestMessages(): Observable<any> {
+    return this.http.get<any>('https://127.0.0.1:5000/get-conversations');
+  }
 
   joinRoom(room: string, username: string) {
     this.socket.emit('join', { room, username });

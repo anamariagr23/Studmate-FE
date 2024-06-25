@@ -22,6 +22,18 @@ export class MessageDrawerComponent {
   ngOnInit(): void {
     this.loadConversations();
 
+    this.chatService.getLatestMessages().subscribe({
+      next: (response) => {
+        this.conversations.forEach(convo => {
+          let lastMessage = response.conversations.find((c: { conversation_id: any; }) => c.conversation_id === convo.id)?.last_message;
+          if (lastMessage) {
+            convo.last_message = lastMessage;
+          }
+        });
+      },
+      error: (error) => console.error('Error fetching latest messages', error)
+    });
+
     const studentId = this.userService.getStudentId()?.toString()!;
     if (studentId != undefined) {
       this.chatService.connect(studentId);

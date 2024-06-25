@@ -6,6 +6,10 @@
             </div>
             <div class="student-info">
                 <mat-card-title class="title">{{ conversation.firstname }} {{ conversation.lastname }}</mat-card-title>
+                <mat-card-subtitle class="last-message">
+                    {{ conversation.last_message?.value }} <span class="message-time">{{
+                        conversation.last_message?.sent_at | date: 'shortTime' }}</span>
+                </mat-card-subtitle>
             </div>
             <div class="status-bubble"
                 [ngClass]="{'online': conversation.online_status, 'offline': !conversation.online_status}"></div>
